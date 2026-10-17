@@ -1,6 +1,6 @@
 # selfheal-playwright
 
-[![CI](https://github.com/OWNER/selfheal-playwright/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/selfheal-playwright/actions/workflows/ci.yml)
+[![CI](https://github.com/jumilandelapena/selfheal-playwright/actions/workflows/ci.yml/badge.svg)](https://github.com/jumilandelapena/selfheal-playwright/actions/workflows/ci.yml)
 ![Node 20+](https://img.shields.io/badge/node-%3E%3D20-brightgreen)
 ![TypeScript strict](https://img.shields.io/badge/typescript-strict-blue)
 ![License MIT](https://img.shields.io/badge/license-MIT-lightgrey)
@@ -88,7 +88,7 @@ On Windows PowerShell set the variable first: `$env:APP_VERSION = '2'`. Copy
   them.
 - A live PR: run the manual `heal-live` workflow (Actions → CI → Run workflow)
   with `ANTHROPIC_API_KEY` in the repository secrets. It heals with Claude and
-  opens the PR against `main`. _Link to the first live PR: `https://github.com/OWNER/selfheal-playwright/pulls?q=label%3Aself-heal`._
+  opens the PR against `main`. _Link to the first live PR: `https://github.com/jumilandelapena/selfheal-playwright/pulls?q=label%3Aself-heal`._
 
 ![The HTML heal report](docs/media/heal-report.png)
 
