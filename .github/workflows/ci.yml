@@ -1,0 +1,122 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      max_heals:
+        description: 'Maximum number of locators the live healer may patch'
+        default: '20'
+      min_confidence:
+        description: 'Minimum candidate confidence (0-1)'
+        default: '0.7'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FORCE_COLOR: '1'
+
+jobs:
+  test:
+    name: Playwright suite (APP_VERSION=1) + agent unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm typecheck
+      - name: Agent unit tests (classifier, patcher, verifier, providers, ...)
+        run: pnpm test:agent
+      - name: Playwright suite against the original markup
+        run: pnpm test
+        env:
+          APP_VERSION: '1'
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7
+
+  heal-demo:
+    name: Self-heal demo (APP_VERSION=2, mock provider, no API key)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Heal the suite against the renamed markup (dry run, mock answers)
+        run: pnpm heal --provider mock --dry-run --max-heals 30
+        env:
+          APP_VERSION: '2'
+      - name: Require at least 6 healed tests
+        run: pnpm exec tsx scripts/assert-heals.ts --min 6
+      - name: Mock end-to-end vitest (sandbox copy, patched files, green run)
+        run: pnpm test:e2e-mock
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: heal-report
+          path: |
+            heal-output/heal-report.json
+            heal-output/heal-report.html
+            heal-output/screenshots
+          retention-days: 30
+
+  heal-live:
+    name: Self-heal with Claude and open a PR (manual)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Heal with claude-opus-5-5 and open a pull request
+        run: >-
+          pnpm heal --provider anthropic
+          --max-heals ${{ inputs.max_heals || '20' }}
+          --min-confidence ${{ inputs.min_confidence || '0.7' }}
+        env:
+          APP_VERSION: '2'
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_AUTHOR_NAME: selfheal-playwright
+          GIT_AUTHOR_EMAIL: selfheal-playwright@users.noreply.github.com
+          GIT_COMMITTER_NAME: selfheal-playwright
+          GIT_COMMITTER_EMAIL: selfheal-playwright@users.noreply.github.com
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: heal-report-live
+          path: |
+            heal-output/heal-report.json
+            heal-output/heal-report.html
+            heal-output/screenshots
+            heal-pr.md
+          if-no-files-found: ignore
+          retention-days: 30
