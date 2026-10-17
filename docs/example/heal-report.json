@@ -1,0 +1,834 @@
+{
+  "schemaVersion": 1,
+  "tool": "selfheal-playwright",
+  "startedAt": "2026-10-17T08:05:31.518Z",
+  "finishedAt": "2026-10-17T08:06:11.154Z",
+  "durationMs": 39636,
+  "provider": "mock",
+  "dryRun": false,
+  "appVersion": "2",
+  "baseUrl": "http://localhost:4173",
+  "options": {
+    "maxHeals": 30,
+    "minConfidence": 0.7,
+    "maxRounds": 5,
+    "files": [
+      "tests/**/*.@(spec|test).@(ts|mts|js|mjs)"
+    ]
+  },
+  "rounds": 4,
+  "summary": {
+    "testsRun": 12,
+    "failures": 18,
+    "healableFailures": 18,
+    "healedLocators": 18,
+    "healedTests": 10,
+    "revertedLocators": 0,
+    "unhealedTests": 0,
+    "skippedFailures": 0,
+    "inputTokens": 0,
+    "outputTokens": 0,
+    "estimatedCostUsd": 0
+  },
+  "heals": [
+    {
+      "id": "heal-001",
+      "round": 1,
+      "testId": "tests/login.spec.ts::shows an error for a wrong password",
+      "testTitle": "shows an error for a wrong password",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\login.spec.ts",
+      "relFile": "tests/login.spec.ts",
+      "line": 11,
+      "intent": "shows an error for a wrong password",
+      "action": "click",
+      "oldLocator": "page.locator('#login-btn')",
+      "errorLocator": "locator('#login-btn')",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.click: Timeout 3000ms exceeded.\nCall log:\n  - waiting for locator('#login-btn')",
+      "candidates": [
+        {
+          "locator": "page.getByRole('button', { name: 'Sign in' })",
+          "kind": "role",
+          "confidence": 0.95,
+          "reason": "The only submit button in the login form; its text changed from 'Log in' to 'Sign in'.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and click succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/login",
+      "screenshot": "screenshots/heal-001-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByRole('button', { name: 'Sign in' })",
+      "confidence": 0.95,
+      "kind": "role",
+      "reason": "The only submit button in the login form; its text changed from 'Log in' to 'Sign in'."
+    },
+    {
+      "id": "heal-002",
+      "round": 1,
+      "testId": "tests/login.spec.ts::signs in and lands on the task list",
+      "testTitle": "signs in and lands on the task list",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\login.spec.ts",
+      "relFile": "tests/login.spec.ts",
+      "line": 19,
+      "intent": "signs in and lands on the task list",
+      "action": "click",
+      "oldLocator": "page.getByRole('button', { name: 'Log in' })",
+      "errorLocator": "getByRole('button', { name: 'Log in' })",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.click: Timeout 3000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Log in' })",
+      "candidates": [
+        {
+          "locator": "page.getByRole('button', { name: 'Sign in' })",
+          "kind": "role",
+          "confidence": 0.95,
+          "reason": "Same submit button; its label is now 'Sign in'.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and click succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/login",
+      "screenshot": "screenshots/heal-002-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByRole('button', { name: 'Sign in' })",
+      "confidence": 0.95,
+      "kind": "role",
+      "reason": "Same submit button; its label is now 'Sign in'."
+    },
+    {
+      "id": "heal-003",
+      "round": 1,
+      "testId": "tests/login.spec.ts::lets the user tick \"remember me\"",
+      "testTitle": "lets the user tick \"remember me\"",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\login.spec.ts",
+      "relFile": "tests/login.spec.ts",
+      "line": 31,
+      "intent": "lets the user tick \"remember me\"",
+      "action": "check",
+      "oldLocator": "page.getByTestId('remember-me')",
+      "errorLocator": "getByTestId('remember-me')",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.check: Timeout 3000ms exceeded.\nCall log:\n  - waiting for getByTestId('remember-me')",
+      "candidates": [
+        {
+          "locator": "page.getByRole('checkbox', { name: 'Remember me' })",
+          "kind": "role",
+          "confidence": 0.92,
+          "reason": "The checkbox is still labelled 'Remember me'; its test id changed to 'remember'.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and check succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/login",
+      "screenshot": "screenshots/heal-003-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByRole('checkbox', { name: 'Remember me' })",
+      "confidence": 0.92,
+      "kind": "role",
+      "reason": "The checkbox is still labelled 'Remember me'; its test id changed to 'remember'."
+    },
+    {
+      "id": "heal-004",
+      "round": 1,
+      "testId": "tests/settings.spec.ts::turns on dark mode",
+      "testTitle": "turns on dark mode",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\settings.spec.ts",
+      "relFile": "tests/settings.spec.ts",
+      "line": 8,
+      "intent": "turns on dark mode",
+      "action": "check",
+      "oldLocator": "page.locator('#dark-mode')",
+      "errorLocator": "locator('#dark-mode')",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.check: Timeout 3000ms exceeded.\nCall log:\n  - waiting for locator('#dark-mode')",
+      "candidates": [
+        {
+          "locator": "page.getByLabel('Dark mode')",
+          "kind": "label",
+          "confidence": 0.95,
+          "reason": "The checkbox is still labelled 'Dark mode'; its id is now theme-toggle.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and check succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/settings",
+      "screenshot": "screenshots/heal-004-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByLabel('Dark mode')",
+      "confidence": 0.95,
+      "kind": "label",
+      "reason": "The checkbox is still labelled 'Dark mode'; its id is now theme-toggle."
+    },
+    {
+      "id": "heal-005",
+      "round": 1,
+      "testId": "tests/settings.spec.ts::saves the language choice",
+      "testTitle": "saves the language choice",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\settings.spec.ts",
+      "relFile": "tests/settings.spec.ts",
+      "line": 14,
+      "intent": "saves the language choice",
+      "action": "selectOption",
+      "oldLocator": "page.locator('#language')",
+      "errorLocator": "locator('#language')",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.selectOption: Timeout 3000ms exceeded.\nCall log:\n  - waiting for locator('#language')",
+      "candidates": [
+        {
+          "locator": "page.getByLabel('Language')",
+          "kind": "label",
+          "confidence": 0.95,
+          "reason": "The select is still labelled 'Language'; its id is now lang-select.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and selectOption succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/settings",
+      "screenshot": "screenshots/heal-005-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByLabel('Language')",
+      "confidence": 0.95,
+      "kind": "label",
+      "reason": "The select is still labelled 'Language'; its id is now lang-select."
+    },
+    {
+      "id": "heal-006",
+      "round": 1,
+      "testId": "tests/settings.spec.ts::keeps email notifications off until switched on",
+      "testTitle": "keeps email notifications off until switched on",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\settings.spec.ts",
+      "relFile": "tests/settings.spec.ts",
+      "line": 24,
+      "intent": "keeps email notifications off until switched on",
+      "action": "check",
+      "oldLocator": "page.getByTestId('notify-toggle')",
+      "errorLocator": "getByTestId('notify-toggle')",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.check: Timeout 3000ms exceeded.\nCall log:\n  - waiting for getByTestId('notify-toggle')",
+      "candidates": [
+        {
+          "locator": "page.getByTestId('notifications')",
+          "kind": "testid",
+          "confidence": 0.9,
+          "reason": "Same checkbox under its new test id.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and check succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/settings",
+      "screenshot": "screenshots/heal-006-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByTestId('notifications')",
+      "confidence": 0.9,
+      "kind": "testid",
+      "reason": "Same checkbox under its new test id."
+    },
+    {
+      "id": "heal-007",
+      "round": 1,
+      "testId": "tests/todos.spec.ts::adds a task",
+      "testTitle": "adds a task",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\todos.spec.ts",
+      "relFile": "tests/todos.spec.ts",
+      "line": 13,
+      "intent": "type a title and submit it",
+      "action": "fill",
+      "oldLocator": "page.locator('#new-todo')",
+      "errorLocator": "locator('#new-todo')",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.fill: Timeout 3000ms exceeded.\nCall log:\n  - waiting for locator('#new-todo')",
+      "candidates": [
+        {
+          "locator": "page.getByLabel('Task title')",
+          "kind": "label",
+          "confidence": 0.9,
+          "reason": "The text input keeps its visually hidden label 'Task title'; the id changed to task-input.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and fill succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "stepTitle": "type a title and submit it",
+      "pageUrl": "http://localhost:4173/todos",
+      "screenshot": "screenshots/heal-007-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByLabel('Task title')",
+      "confidence": 0.9,
+      "kind": "label",
+      "reason": "The text input keeps its visually hidden label 'Task title'; the id changed to task-input."
+    },
+    {
+      "id": "heal-008",
+      "round": 1,
+      "testId": "tests/todos.spec.ts::marks a task as done",
+      "testTitle": "marks a task as done",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\todos.spec.ts",
+      "relFile": "tests/todos.spec.ts",
+      "line": 21,
+      "intent": "marks a task as done",
+      "action": "click",
+      "oldLocator": "page.getByRole('button', { name: 'Add task' })",
+      "errorLocator": "getByRole('button', { name: 'Add task' })",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.click: Timeout 3000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Add task' })",
+      "candidates": [
+        {
+          "locator": "page.getByRole('button', { name: 'New task' })",
+          "kind": "role",
+          "confidence": 0.95,
+          "reason": "The form's submit button was renamed from 'Add task' to 'New task'.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and click succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/todos",
+      "screenshot": "screenshots/heal-008-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByRole('button', { name: 'New task' })",
+      "confidence": 0.95,
+      "kind": "role",
+      "reason": "The form's submit button was renamed from 'Add task' to 'New task'."
+    },
+    {
+      "id": "heal-009",
+      "round": 1,
+      "testId": "tests/todos.spec.ts::deletes a task",
+      "testTitle": "deletes a task",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\todos.spec.ts",
+      "relFile": "tests/todos.spec.ts",
+      "line": 28,
+      "intent": "deletes a task",
+      "action": "click",
+      "oldLocator": "page.getByRole('button', { name: 'Add task' })",
+      "errorLocator": "getByRole('button', { name: 'Add task' })",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.click: Timeout 3000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Add task' })",
+      "candidates": [
+        {
+          "locator": "page.getByRole('button', { name: 'New task' })",
+          "kind": "role",
+          "confidence": 0.95,
+          "reason": "The form's submit button was renamed from 'Add task' to 'New task'.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and click succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/todos",
+      "screenshot": "screenshots/heal-009-before.png",
+      "newLocator": "page.getByRole('button', { name: 'New task' })",
+      "confidence": 0.95,
+      "kind": "role",
+      "reason": "The form's submit button was renamed from 'Add task' to 'New task'."
+    },
+    {
+      "id": "heal-010",
+      "round": 1,
+      "testId": "tests/todos.spec.ts::shows how many tasks are left",
+      "testTitle": "shows how many tasks are left",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\todos.spec.ts",
+      "relFile": "tests/todos.spec.ts",
+      "line": 35,
+      "intent": "shows how many tasks are left",
+      "action": "click",
+      "oldLocator": "page.getByRole('button', { name: 'Add task' })",
+      "errorLocator": "getByRole('button', { name: 'Add task' })",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.click: Timeout 3000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Add task' })",
+      "candidates": [
+        {
+          "locator": "page.getByRole('button', { name: 'New task' })",
+          "kind": "role",
+          "confidence": 0.95,
+          "reason": "The form's submit button was renamed from 'Add task' to 'New task'.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and click succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/todos",
+      "screenshot": "screenshots/heal-010-before.png",
+      "newLocator": "page.getByRole('button', { name: 'New task' })",
+      "confidence": 0.95,
+      "kind": "role",
+      "reason": "The form's submit button was renamed from 'Add task' to 'New task'."
+    },
+    {
+      "id": "heal-011",
+      "round": 2,
+      "testId": "tests/login.spec.ts::shows an error for a wrong password",
+      "testTitle": "shows an error for a wrong password",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\login.spec.ts",
+      "relFile": "tests/login.spec.ts",
+      "line": 12,
+      "intent": "shows an error for a wrong password",
+      "action": "expect.toHaveText",
+      "oldLocator": "page.locator('.error-msg')",
+      "errorLocator": "locator('.error-msg')",
+      "failureKind": "element-not-found",
+      "errorExcerpt": "Error: expect(locator).toHaveText(expected) failed\n\nLocator: locator('.error-msg')\nExpected: \"Invalid username or password\"\nTimeout: 3000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toHaveText\" locator('.error-msg') with timeout 3000ms\n  - waiting for locator('.error-msg')",
+      "candidates": [
+        {
+          "locator": "page.getByRole('alert')",
+          "kind": "role",
+          "confidence": 0.9,
+          "reason": "The error paragraph keeps role=alert; the class was renamed to alert-danger.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and expect.toHaveText succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/login",
+      "screenshot": "screenshots/heal-011-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByRole('alert')",
+      "confidence": 0.9,
+      "kind": "role",
+      "reason": "The error paragraph keeps role=alert; the class was renamed to alert-danger."
+    },
+    {
+      "id": "heal-012",
+      "round": 2,
+      "testId": "tests/settings.spec.ts::saves the language choice",
+      "testTitle": "saves the language choice",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\settings.spec.ts",
+      "relFile": "tests/settings.spec.ts",
+      "line": 17,
+      "intent": "saves the language choice",
+      "action": "click",
+      "oldLocator": "page.locator('.btn')",
+      "errorLocator": "locator('.btn')",
+      "failureKind": "strict-mode",
+      "errorExcerpt": "Error: locator.click: Error: strict mode violation: locator('.btn') resolved to 2 elements:\n    1) <button class=\"btn\" type=\"submit\" data-testid=\"save\">Save changes</button> aka getByTestId('save')\n    2) <a href=\"/todos\" class=\"btn btn-link\">Back to tasks</a> aka getByRole('link', { name: 'Back to tasks' })\n\nCall log:\n  - waiting for locator('.btn')",
+      "candidates": [
+        {
+          "locator": "page.locator('form .btn')",
+          "kind": "css",
+          "confidence": 0.8,
+          "reason": "Deliberately weak answer: both the save button and the back link are .btn inside the form, so the verifier must reject it.",
+          "status": "rejected",
+          "count": 2,
+          "detail": "matches 2 elements, expected 1"
+        },
+        {
+          "locator": "page.getByRole('button', { name: 'Save changes' })",
+          "kind": "role",
+          "confidence": 0.78,
+          "reason": "The form's only button; its text changed from 'Save settings' to 'Save changes'.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and click succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/settings",
+      "screenshot": "screenshots/heal-012-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByRole('button', { name: 'Save changes' })",
+      "confidence": 0.78,
+      "kind": "role",
+      "reason": "The form's only button; its text changed from 'Save settings' to 'Save changes'."
+    },
+    {
+      "id": "heal-013",
+      "round": 2,
+      "testId": "tests/todos.spec.ts::adds a task",
+      "testTitle": "adds a task",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\todos.spec.ts",
+      "relFile": "tests/todos.spec.ts",
+      "line": 14,
+      "intent": "type a title and submit it",
+      "action": "click",
+      "oldLocator": "page.getByText('Add task')",
+      "errorLocator": "getByText('Add task')",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.click: Timeout 3000ms exceeded.\nCall log:\n  - waiting for getByText('Add task')",
+      "candidates": [
+        {
+          "locator": "page.getByRole('button', { name: 'New task' })",
+          "kind": "role",
+          "confidence": 0.93,
+          "reason": "The form's submit button was renamed from 'Add task' to 'New task'.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and click succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "stepTitle": "type a title and submit it",
+      "pageUrl": "http://localhost:4173/todos",
+      "screenshot": "screenshots/heal-013-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByRole('button', { name: 'New task' })",
+      "confidence": 0.93,
+      "kind": "role",
+      "reason": "The form's submit button was renamed from 'Add task' to 'New task'."
+    },
+    {
+      "id": "heal-014",
+      "round": 2,
+      "testId": "tests/todos.spec.ts::marks a task as done",
+      "testTitle": "marks a task as done",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\todos.spec.ts",
+      "relFile": "tests/todos.spec.ts",
+      "line": 22,
+      "intent": "marks a task as done",
+      "action": "check",
+      "oldLocator": "page.locator('.toggle')",
+      "errorLocator": "locator('.toggle')",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.check: Timeout 3000ms exceeded.\nCall log:\n  - waiting for locator('.toggle')",
+      "candidates": [
+        {
+          "locator": "page.getByRole('checkbox', { name: 'Mark Buy milk as done' })",
+          "kind": "role",
+          "confidence": 0.9,
+          "reason": "The task checkbox keeps its aria-label; the class is now task-check.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and check succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/todos",
+      "screenshot": "screenshots/heal-014-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByRole('checkbox', { name: 'Mark Buy milk as done' })",
+      "confidence": 0.9,
+      "kind": "role",
+      "reason": "The task checkbox keeps its aria-label; the class is now task-check."
+    },
+    {
+      "id": "heal-015",
+      "round": 2,
+      "testId": "tests/todos.spec.ts::deletes a task",
+      "testTitle": "deletes a task",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\todos.spec.ts",
+      "relFile": "tests/todos.spec.ts",
+      "line": 29,
+      "intent": "deletes a task",
+      "action": "click",
+      "oldLocator": "page.locator('.delete')",
+      "errorLocator": "locator('.delete')",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.click: Timeout 3000ms exceeded.\nCall log:\n  - waiting for locator('.delete')",
+      "candidates": [
+        {
+          "locator": "page.getByRole('button', { name: 'Delete Buy milk' })",
+          "kind": "role",
+          "confidence": 0.9,
+          "reason": "The delete button keeps its aria-label; the class is now task-remove.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and click succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/todos",
+      "screenshot": "screenshots/heal-015-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByRole('button', { name: 'Delete Buy milk' })",
+      "confidence": 0.9,
+      "kind": "role",
+      "reason": "The delete button keeps its aria-label; the class is now task-remove."
+    },
+    {
+      "id": "heal-016",
+      "round": 2,
+      "testId": "tests/todos.spec.ts::shows how many tasks are left",
+      "testTitle": "shows how many tasks are left",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\todos.spec.ts",
+      "relFile": "tests/todos.spec.ts",
+      "line": 37,
+      "intent": "shows how many tasks are left",
+      "action": "click",
+      "oldLocator": "page.getByRole('button', { name: 'Add task' })",
+      "errorLocator": "getByRole('button', { name: 'Add task' })",
+      "failureKind": "locator-timeout",
+      "errorExcerpt": "TimeoutError: locator.click: Timeout 3000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Add task' })",
+      "candidates": [
+        {
+          "locator": "page.getByRole('button', { name: 'New task' })",
+          "kind": "role",
+          "confidence": 0.95,
+          "reason": "The form's submit button was renamed from 'Add task' to 'New task'.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and click succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/todos",
+      "screenshot": "screenshots/heal-016-before.png",
+      "newLocator": "page.getByRole('button', { name: 'New task' })",
+      "confidence": 0.95,
+      "kind": "role",
+      "reason": "The form's submit button was renamed from 'Add task' to 'New task'."
+    },
+    {
+      "id": "heal-017",
+      "round": 3,
+      "testId": "tests/settings.spec.ts::saves the language choice",
+      "testTitle": "saves the language choice",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\settings.spec.ts",
+      "relFile": "tests/settings.spec.ts",
+      "line": 18,
+      "intent": "saves the language choice",
+      "action": "expect.toHaveText",
+      "oldLocator": "page.locator('#toast')",
+      "errorLocator": "locator('#toast')",
+      "failureKind": "element-not-found",
+      "errorExcerpt": "Error: expect(locator).toHaveText(expected) failed\n\nLocator: locator('#toast')\nExpected: \"Settings saved\"\nTimeout: 3000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toHaveText\" locator('#toast') with timeout 3000ms\n  - waiting for locator('#toast')",
+      "candidates": [
+        {
+          "locator": "page.getByRole('status')",
+          "kind": "role",
+          "confidence": 0.88,
+          "reason": "The toast keeps role=status; its id was replaced by data-testid=notice.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and expect.toHaveText succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/settings",
+      "screenshot": "screenshots/heal-017-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByRole('status')",
+      "confidence": 0.88,
+      "kind": "role",
+      "reason": "The toast keeps role=status; its id was replaced by data-testid=notice."
+    },
+    {
+      "id": "heal-018",
+      "round": 3,
+      "testId": "tests/todos.spec.ts::shows how many tasks are left",
+      "testTitle": "shows how many tasks are left",
+      "file": "C:\\Users\\Jumi\\OneDrive\\Documents\\Portfolio\\Self-healing_Test_Agent\\tests\\todos.spec.ts",
+      "relFile": "tests/todos.spec.ts",
+      "line": 38,
+      "intent": "shows how many tasks are left",
+      "action": "expect.toHaveText",
+      "oldLocator": "page.locator('#count')",
+      "errorLocator": "locator('#count')",
+      "failureKind": "element-not-found",
+      "errorExcerpt": "Error: expect(locator).toHaveText(expected) failed\n\nLocator: locator('#count')\nExpected: \"2 tasks left\"\nTimeout: 3000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toHaveText\" locator('#count') with timeout 3000ms\n  - waiting for locator('#count')",
+      "candidates": [
+        {
+          "locator": "page.getByTestId('task-count')",
+          "kind": "testid",
+          "confidence": 0.9,
+          "reason": "The remaining-count paragraph now carries data-testid=task-count.",
+          "status": "passed",
+          "count": 1,
+          "detail": "matches 1 element(s) and expect.toHaveText succeeded"
+        }
+      ],
+      "status": "healed",
+      "statusDetail": "the test passed after the patch",
+      "pageUrl": "http://localhost:4173/todos",
+      "screenshot": "screenshots/heal-018-before.png",
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "newLocator": "page.getByTestId('task-count')",
+      "confidence": 0.9,
+      "kind": "testid",
+      "reason": "The remaining-count paragraph now carries data-testid=task-count."
+    }
+  ],
+  "tests": [
+    {
+      "testId": "tests/login.spec.ts::signs in and lands on the task list",
+      "title": "signs in and lands on the task list",
+      "relFile": "tests/login.spec.ts",
+      "status": "healed",
+      "detail": "1 locator(s) healed",
+      "heals": [
+        "heal-002"
+      ]
+    },
+    {
+      "testId": "tests/login.spec.ts::lets the user tick \"remember me\"",
+      "title": "lets the user tick \"remember me\"",
+      "relFile": "tests/login.spec.ts",
+      "status": "healed",
+      "detail": "1 locator(s) healed",
+      "heals": [
+        "heal-003"
+      ]
+    },
+    {
+      "testId": "tests/settings.spec.ts::turns on dark mode",
+      "title": "turns on dark mode",
+      "relFile": "tests/settings.spec.ts",
+      "status": "healed",
+      "detail": "1 locator(s) healed",
+      "heals": [
+        "heal-004"
+      ]
+    },
+    {
+      "testId": "tests/settings.spec.ts::keeps email notifications off until switched on",
+      "title": "keeps email notifications off until switched on",
+      "relFile": "tests/settings.spec.ts",
+      "status": "healed",
+      "detail": "1 locator(s) healed",
+      "heals": [
+        "heal-006"
+      ]
+    },
+    {
+      "testId": "tests/login.spec.ts::shows an error for a wrong password",
+      "title": "shows an error for a wrong password",
+      "relFile": "tests/login.spec.ts",
+      "status": "healed",
+      "detail": "2 locator(s) healed",
+      "heals": [
+        "heal-001",
+        "heal-011"
+      ]
+    },
+    {
+      "testId": "tests/todos.spec.ts::adds a task",
+      "title": "adds a task",
+      "relFile": "tests/todos.spec.ts",
+      "status": "healed",
+      "detail": "2 locator(s) healed",
+      "heals": [
+        "heal-007",
+        "heal-013"
+      ]
+    },
+    {
+      "testId": "tests/todos.spec.ts::marks a task as done",
+      "title": "marks a task as done",
+      "relFile": "tests/todos.spec.ts",
+      "status": "healed",
+      "detail": "2 locator(s) healed",
+      "heals": [
+        "heal-008",
+        "heal-014"
+      ]
+    },
+    {
+      "testId": "tests/todos.spec.ts::deletes a task",
+      "title": "deletes a task",
+      "relFile": "tests/todos.spec.ts",
+      "status": "healed",
+      "detail": "2 locator(s) healed",
+      "heals": [
+        "heal-009",
+        "heal-015"
+      ]
+    },
+    {
+      "testId": "tests/settings.spec.ts::saves the language choice",
+      "title": "saves the language choice",
+      "relFile": "tests/settings.spec.ts",
+      "status": "healed",
+      "detail": "3 locator(s) healed",
+      "heals": [
+        "heal-005",
+        "heal-012",
+        "heal-017"
+      ]
+    },
+    {
+      "testId": "tests/todos.spec.ts::shows how many tasks are left",
+      "title": "shows how many tasks are left",
+      "relFile": "tests/todos.spec.ts",
+      "status": "healed",
+      "detail": "3 locator(s) healed",
+      "heals": [
+        "heal-010",
+        "heal-016",
+        "heal-018"
+      ]
+    }
+  ],
+  "diff": "===================================================================\n--- a/tests/login.spec.ts\n+++ b/tests/login.spec.ts\n@@ -8,15 +8,15 @@\n     await page.goto('/login');\n     await page.getByLabel('Username').fill('alice');\n     await page.getByLabel('Password').fill('wrong-password');\n-    await page.locator('#login-btn').click();\n-    await expect(page.locator('.error-msg')).toHaveText('Invalid username or password');\n+    await page.getByRole('button', { name: 'Sign in' }).click();\n+    await expect(page.getByRole('alert')).toHaveText('Invalid username or password');\n   });\n \n   test('signs in and lands on the task list', async ({ page }) => {\n     await page.goto('/login');\n     await page.getByLabel('Username').fill('alice');\n     await page.getByLabel('Password').fill('secret123');\n-    await page.getByRole('button', { name: 'Log in' }).click();\n+    await page.getByRole('button', { name: 'Sign in' }).click();\n     await expect(page).toHaveURL(/\\/todos$/);\n     await expect(page.getByText('Signed in as alice')).toBeVisible();\n   });\n@@ -28,7 +28,7 @@\n \n   test('lets the user tick \"remember me\"', async ({ page }) => {\n     await page.goto('/login');\n-    await page.getByTestId('remember-me').check();\n+    await page.getByRole('checkbox', { name: 'Remember me' }).check();\n     await expect(page.getByRole('checkbox', { name: 'Remember me' })).toBeChecked();\n   });\n });\n===================================================================\n--- a/tests/settings.spec.ts\n+++ b/tests/settings.spec.ts\n@@ -5,23 +5,23 @@\n test.describe('settings', () => {\n   test('turns on dark mode', async ({ page }) => {\n     await page.goto('/settings');\n-    await page.locator('#dark-mode').check();\n+    await page.getByLabel('Dark mode').check();\n     await expect(page.locator('body')).toHaveClass(/dark/);\n   });\n \n   test('saves the language choice', async ({ page }) => {\n     await page.goto('/settings');\n-    await page.locator('#language').selectOption('de');\n+    await page.getByLabel('Language').selectOption('de');\n     // `.btn` is unique on this page in v1. In v2 the \"back\" link is also a\n     // `.btn`, which turns this click into a strict-mode violation.\n-    await page.locator('.btn').click();\n-    await expect(page.locator('#toast')).toHaveText('Settings saved');\n+    await page.getByRole('button', { name: 'Save changes' }).click();\n+    await expect(page.getByRole('status')).toHaveText('Settings saved');\n   });\n \n   test('keeps email notifications off until switched on', async ({ page }) => {\n     await page.goto('/settings');\n     await expect(page.getByRole('checkbox', { name: 'Email notifications' })).not.toBeChecked();\n-    await page.getByTestId('notify-toggle').check();\n+    await page.getByTestId('notifications').check();\n     await expect(page.getByRole('checkbox', { name: 'Email notifications' })).toBeChecked();\n   });\n \n===================================================================\n--- a/tests/todos.spec.ts\n+++ b/tests/todos.spec.ts\n@@ -10,31 +10,31 @@\n \n   test('adds a task', async ({ page }) => {\n     await test.step('type a title and submit it', async () => {\n-      await page.locator('#new-todo').fill('Buy milk');\n-      await page.getByText('Add task').click();\n+      await page.getByLabel('Task title').fill('Buy milk');\n+      await page.getByRole('button', { name: 'New task' }).click();\n     });\n     await expect(page.getByText('Buy milk')).toBeVisible();\n   });\n \n   test('marks a task as done', async ({ page }) => {\n     await page.getByLabel('Task title').fill('Buy milk');\n-    await page.getByRole('button', { name: 'Add task' }).click();\n-    await page.locator('.toggle').check();\n+    await page.getByRole('button', { name: 'New task' }).click();\n+    await page.getByRole('checkbox', { name: 'Mark Buy milk as done' }).check();\n     await expect(page.getByRole('checkbox', { name: 'Mark Buy milk as done' })).toBeChecked();\n   });\n \n   test('deletes a task', async ({ page }) => {\n     await page.getByLabel('Task title').fill('Buy milk');\n-    await page.getByRole('button', { name: 'Add task' }).click();\n-    await page.locator('.delete').click();\n+    await page.getByRole('button', { name: 'New task' }).click();\n+    await page.getByRole('button', { name: 'Delete Buy milk' }).click();\n     await expect(page.getByText('Buy milk')).toHaveCount(0);\n   });\n \n   test('shows how many tasks are left', async ({ page }) => {\n     await page.getByLabel('Task title').fill('Buy milk');\n-    await page.getByRole('button', { name: 'Add task' }).click();\n+    await page.getByRole('button', { name: 'New task' }).click();\n     await page.getByLabel('Task title').fill('Walk the dog');\n-    await page.getByRole('button', { name: 'Add task' }).click();\n-    await expect(page.locator('#count')).toHaveText('2 tasks left');\n+    await page.getByRole('button', { name: 'New task' }).click();\n+    await expect(page.getByTestId('task-count')).toHaveText('2 tasks left');\n   });\n });\n",
+  "pr": {
+    "status": "written",
+    "path": "heal-pr.md",
+    "reason": "the gh CLI is not installed"
+  }
+}
