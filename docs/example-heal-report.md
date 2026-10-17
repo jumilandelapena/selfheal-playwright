@@ -90,3 +90,13 @@ Fields worth knowing:
   could not be replayed or patched).
 - `screenshot`: path of the "before" screenshot, relative to the output
   directory; the HTML report inlines it and the PR embeds it.
+
+## Before screenshots
+
+The agent stores one screenshot per heal attempt, taken right after replaying
+the steps that still pass and right before the failing one. Two from the
+example run:
+
+| `heal-001` — login page, `page.locator('#login-btn')` | `heal-012` — settings page, `page.locator('.btn')` |
+|---|---|
+| ![login page before the heal](media/login-v2-before-heal.png) | ![settings page before the heal](media/settings-v2-before-heal.png) |
