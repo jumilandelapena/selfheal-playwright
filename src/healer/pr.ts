@@ -47,7 +47,8 @@ function writeFallback(options: PullRequestOptions, reason: string): PullRequest
   });
   writeFileSync(target, body, 'utf8');
   options.log.warn(`${reason}. PR body written to ${FALLBACK_FILE}`);
-  return { status: 'written', path: target, reason };
+  // Relative so reports stay portable between machines and CI.
+  return { status: 'written', path: FALLBACK_FILE, reason };
 }
 
 export async function openPullRequest(options: PullRequestOptions): Promise<PullRequestOutcome> {
