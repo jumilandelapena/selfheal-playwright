@@ -22,6 +22,8 @@ Options:
   --files <glob>               allowlist of spec files, repeatable or comma-separated
                                (default: every spec under the Playwright testDir)
   --max-rounds <n>             maximum run → heal rounds (default: 5)
+  --action-timeout <ms>        timeout for replayed steps and candidate checks (default: 3000;
+                               raise it for apps that render slowly)
   --out <dir>                  output directory for reports and screenshots (default: heal-output)
   --base-url <url>             app URL (default: use.baseURL from the Playwright config)
   --config <path>              Playwright config file (default: ./playwright.config.ts)
@@ -65,6 +67,7 @@ async function main(): Promise<number> {
       'min-confidence': { type: 'string' },
       files: { type: 'string', multiple: true },
       'max-rounds': { type: 'string' },
+      'action-timeout': { type: 'string' },
       out: { type: 'string', default: 'heal-output' },
       'base-url': { type: 'string' },
       config: { type: 'string' },
@@ -107,6 +110,7 @@ async function main(): Promise<number> {
     maxHeals: number(values['max-heals'], '--max-heals', 5),
     minConfidence: number(values['min-confidence'], '--min-confidence', 0.7),
     maxRounds: number(values['max-rounds'], '--max-rounds', 5),
+    actionTimeout: number(values['action-timeout'], '--action-timeout', 3_000),
     openPr: !values['no-pr'],
     log,
     ...(values['base-url'] ? { baseUrl: values['base-url'] } : {}),

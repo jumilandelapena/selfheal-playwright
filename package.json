@@ -16,6 +16,7 @@
     "test:agent": "vitest run --project unit",
     "test:e2e-mock": "vitest run --project e2e",
     "heal": "tsx src/cli/heal.ts",
+    "compat": "tsx scripts/compat-report.ts",
     "typecheck": "tsc --noEmit",
     "check": "pnpm typecheck && pnpm test:agent"
   },

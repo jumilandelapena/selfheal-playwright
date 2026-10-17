@@ -22,6 +22,8 @@ export interface TestFailure {
   /** Absolute path of the test file. */
   file: string;
   relFile: string;
+  /** File the error was thrown in. Differs from `file` when it happened inside a helper or page object. */
+  errorFile: string;
   title: string;
   titlePath: string[];
   /** Line of the `test(...)` call. */

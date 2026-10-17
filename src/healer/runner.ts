@@ -122,6 +122,7 @@ export function parseJsonReport(report: JsonReport, cwd: string, reportPath: str
           id,
           file: absFile,
           relFile,
+          errorFile: location?.file ? path.resolve(location.file) : absFile,
           title: spec.title,
           titlePath: [...titles, spec.title],
           specLine: spec.line,

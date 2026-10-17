@@ -198,6 +198,14 @@ export async function heal(options: HealOptions): Promise<HealReport> {
       return { record };
     };
 
+    if (path.resolve(failure.errorFile) !== path.resolve(failure.file)) {
+      const where = path.relative(cwd, failure.errorFile).replace(/\\/g, '/');
+      return skip(
+        `the failure happened inside ${where}:${failure.line}, not in the test body; ` +
+          'locators that live in helpers or page objects cannot be healed yet',
+      );
+    }
+
     let steps;
     try {
       steps = parseTestSteps(readFileSync(failure.file, 'utf8'), failure.file, failure.title, failure.specLine).steps;

@@ -125,6 +125,26 @@ pnpm heal [options]
 Every run writes `heal-output/heal-report.json`, a self-contained
 `heal-output/heal-report.html` and one "before" screenshot per heal.
 
+## Will it work on my suite?
+
+Run the compatibility report first. It parses every test of another project
+with the healer's own step parser and tells you how much it could replay,
+without executing anything:
+
+```bash
+pnpm compat ../my-project 'tests/**/*.spec.ts'
+```
+
+The healer replays steps written directly in the test body (`page.goto`,
+`page.<locator>.<action>()`, `expect(page.<locator>)`, `test.step`,
+`beforeEach`). Suites built on page objects or custom fixtures score close to
+0% today; on those the healer still runs, classifies and reports every
+failure, but refuses to patch with the reason "cannot replay" or "the failure
+happened inside <page object>:<line>". See the roadmap below.
+
+For slow-rendering apps raise `--action-timeout` (for example `15000`) so a
+correct candidate is not rejected while a spinner is still up.
+
 ## CI
 
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml) has three jobs:
