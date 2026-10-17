@@ -1,0 +1,158 @@
+{
+  "page.locator('#login-btn')": [
+    {
+      "locator": "page.getByRole('button', { name: 'Sign in' })",
+      "kind": "role",
+      "confidence": 0.95,
+      "reason": "The only submit button in the login form; its text changed from 'Log in' to 'Sign in'."
+    }
+  ],
+  "page.locator('.error-msg')": [
+    {
+      "locator": "page.getByRole('alert')",
+      "kind": "role",
+      "confidence": 0.9,
+      "reason": "The error paragraph keeps role=alert; the class was renamed to alert-danger."
+    },
+    {
+      "locator": "page.getByText('Invalid username or password')",
+      "kind": "text",
+      "confidence": 0.8,
+      "reason": "The error text is unchanged."
+    }
+  ],
+  "page.getByRole('button', { name: 'Log in' })": [
+    {
+      "locator": "page.getByRole('button', { name: 'Sign in' })",
+      "kind": "role",
+      "confidence": 0.95,
+      "reason": "Same submit button; its label is now 'Sign in'."
+    }
+  ],
+  "page.getByTestId('remember-me')": [
+    {
+      "locator": "page.getByRole('checkbox', { name: 'Remember me' })",
+      "kind": "role",
+      "confidence": 0.92,
+      "reason": "The checkbox is still labelled 'Remember me'; its test id changed to 'remember'."
+    },
+    {
+      "locator": "page.getByTestId('remember')",
+      "kind": "testid",
+      "confidence": 0.85,
+      "reason": "New test id of the same checkbox."
+    }
+  ],
+  "page.locator('#new-todo')": [
+    {
+      "locator": "page.getByLabel('Task title')",
+      "kind": "label",
+      "confidence": 0.9,
+      "reason": "The text input keeps its visually hidden label 'Task title'; the id changed to task-input."
+    },
+    {
+      "locator": "page.getByPlaceholder('What needs doing?')",
+      "kind": "label",
+      "confidence": 0.85,
+      "reason": "Same placeholder text."
+    }
+  ],
+  "page.getByText('Add task')": [
+    {
+      "locator": "page.getByRole('button', { name: 'New task' })",
+      "kind": "role",
+      "confidence": 0.93,
+      "reason": "The form's submit button was renamed from 'Add task' to 'New task'."
+    }
+  ],
+  "page.getByRole('button', { name: 'Add task' })": [
+    {
+      "locator": "page.getByRole('button', { name: 'New task' })",
+      "kind": "role",
+      "confidence": 0.95,
+      "reason": "The form's submit button was renamed from 'Add task' to 'New task'."
+    }
+  ],
+  "page.locator('.toggle')": [
+    {
+      "locator": "page.getByRole('checkbox', { name: 'Mark Buy milk as done' })",
+      "kind": "role",
+      "confidence": 0.9,
+      "reason": "The task checkbox keeps its aria-label; the class is now task-check."
+    }
+  ],
+  "page.locator('.delete')": [
+    {
+      "locator": "page.getByRole('button', { name: 'Delete Buy milk' })",
+      "kind": "role",
+      "confidence": 0.9,
+      "reason": "The delete button keeps its aria-label; the class is now task-remove."
+    }
+  ],
+  "page.locator('#count')": [
+    {
+      "locator": "page.getByTestId('task-count')",
+      "kind": "testid",
+      "confidence": 0.9,
+      "reason": "The remaining-count paragraph now carries data-testid=task-count."
+    }
+  ],
+  "page.locator('#dark-mode')": [
+    {
+      "locator": "page.getByLabel('Dark mode')",
+      "kind": "label",
+      "confidence": 0.95,
+      "reason": "The checkbox is still labelled 'Dark mode'; its id is now theme-toggle."
+    }
+  ],
+  "page.locator('#language')": [
+    {
+      "locator": "page.getByLabel('Language')",
+      "kind": "label",
+      "confidence": 0.95,
+      "reason": "The select is still labelled 'Language'; its id is now lang-select."
+    }
+  ],
+  "page.locator('.btn')": [
+    {
+      "locator": "page.locator('form .btn')",
+      "kind": "css",
+      "confidence": 0.8,
+      "reason": "Deliberately weak answer: both the save button and the back link are .btn inside the form, so the verifier must reject it."
+    },
+    {
+      "locator": "page.getByRole('button', { name: 'Save changes' })",
+      "kind": "role",
+      "confidence": 0.78,
+      "reason": "The form's only button; its text changed from 'Save settings' to 'Save changes'."
+    }
+  ],
+  "page.locator('#toast')": [
+    {
+      "locator": "page.getByRole('status')",
+      "kind": "role",
+      "confidence": 0.88,
+      "reason": "The toast keeps role=status; its id was replaced by data-testid=notice."
+    },
+    {
+      "locator": "page.getByText('Settings saved')",
+      "kind": "text",
+      "confidence": 0.5,
+      "reason": "Deliberately low confidence: the text matches but is below the default threshold."
+    }
+  ],
+  "page.getByTestId('notify-toggle')": [
+    {
+      "locator": "page.getByTestId('notifications')",
+      "kind": "testid",
+      "confidence": 0.9,
+      "reason": "Same checkbox under its new test id."
+    },
+    {
+      "locator": "page.getByRole('checkbox', { name: 'Email notifications' })",
+      "kind": "role",
+      "confidence": 0.88,
+      "reason": "The checkbox is still labelled 'Email notifications'."
+    }
+  ]
+}
